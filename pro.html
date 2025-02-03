@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bucket List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; 
+            color: #333; 
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        h1 {
+           margin: 0; 
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px; 
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style: none; 
+            padding: 0;
+        }
+
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #eee; 
+            display: flex; 
+            align-items: center; 
+            transition: background-color 0.3s ease; 
+        }
+
+        li:hover {
+            background-color: #f0f0f0; 
+            cursor: pointer; 
+        }
+
+        li span {  
+            margin-right: 10px;
+        }
+
+        .completed {
+            color: green; 
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed; 
+            bottom: 0;
+            width: 100%;
+        }
+
+ 
+        @media (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+
+            li {
+                padding: 10px;
+                flex-direction: column; 
+                align-items: flex-start; 
+            }
+
+            li span {
+                margin-bottom: 5px; 
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Bucket List</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li><span class="completed">&#10004;</span> Visit the Eiffel Tower</li>
+            <li><span>&#9733;</span> Learn to play the guitar</li>
+            <li><span>&#9733;</span> Travel to Japan</li>
+            <li><span class="completed">&#10004;</span> Run a marathon</li>
+            <li><span>&#9733;</span> Write a novel</li>
+        </ul>
+    </main>
+
+    <footer>
+        &copy; 2025 My Bucket List
+    </footer>
+
+</body>
+</html>
