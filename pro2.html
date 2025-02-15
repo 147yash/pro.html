@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Slider</title>
+<style>
+.slider-container {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    width: 300%; /* Adjust based on number of images */
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: calc(100% / 3); /* Adjust based on number of images */
+    float: left;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1; /* Ensure buttons are above images */
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Thumbnail Styles */
+.thumbnail-container {
+    width: 600px; /* Match slider width */
+    margin: 10px auto;
+    overflow: hidden; /* Hide thumbnails that overflow */
+}
+
+.thumbnail-slider {
+    white-space: nowrap; /* Prevent thumbnails from wrapping */
+    transition: transform 0.5s ease-in-out; /* Smooth thumbnail sliding */
+}
+
+.thumbnail {
+    display: inline-block;
+    width: 100px; /* Adjust thumbnail size */
+    height: 60px; /* Adjust thumbnail size */
+    margin: 5px;
+    cursor: pointer;
+    overflow: hidden; /* Hide any overflowing image content */
+    border: 2px solid transparent; /* Initially no border */
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+}
+
+.thumbnail.active {
+    border-color: white; /* Highlight active thumbnail */
+}
+</style>
+</head>
+<body>
+
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide">
+            <img src="image1.jpg" alt="Image 1">
+            <div class="caption">Machu Picchu - Peru</div>
+        </div>
+        <div class="slide">
+            <img src="image2.jpg" alt="Image 2">
+            <div class="caption">Adventure Awaits</div>
+        </div>
+        <div class="slide">
+            <img src="image3.jpg" alt="Image 3">
+            <div class="caption">Explore the World</div>
+        </div>
+        </div>
+    <div class="navigation">
+        <button class="prev-btn">&#10094;</button>
+        <button class="next-btn">&#10095;</button>
+    </div>
+</div>
+
+<div class="thumbnail-container">
+    <div class="thumbnail-slider">
+        <div class="thumbnail active" data-slide="0">
+            <img src="69-Sai-Pallavi-New-Latest-HD-Photos-Fidaa-Movie-Heroine-Sai-Pallavi-Photo-Shoot-Images.jpg" alt="Thumbnail 1">
+        </div>
+        <div class="thumbnail" data-slide="1">
+            <img src="image2.jpg" alt="Thumbnail 2">
+        </div>
+        <div class="thumbnail" data-slide="2">
+            <img src="image3.jpg" alt="Thumbnail 3">
+        </div>
+        </div>
+</div>
+
+
+<script>
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const thumbnailSlider = document.querySelector('.thumbnail-slider');
+const thumbnails = document.querySelectorAll('.thumbnail');
+
+let currentSlide = 0;
+
+function showSlide(n) {
+    slider.style.transform = translateX(-${n * 100}%);
+
+    // Highlight active thumbnail
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    thumbnails[n].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
+
+// Thumbnail Navigation
+thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+        const slideIndex = parseInt(thumbnail.dataset.slide);
+        currentSlide = slideIndex;
+        showSlide(currentSlide);
+    });
+});
+
+// Auto slide (optional)
+let autoSlideInterval = setInterval(nextSlide, 3000);
+
+</script>
+
+</body>
+</html>
